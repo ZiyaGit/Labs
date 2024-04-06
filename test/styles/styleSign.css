@@ -1,0 +1,28 @@
+/* CSS written by Sebastian Deslauriers */
+#signwrap{ /* put the sign up text in a block */
+    background-color: #CcCACAa0;
+    margin-left: 35%;
+    margin-right: 35%;
+    padding-top: 2.5%;
+    padding-bottom: 5%;
+}
+header { /* add padding to the bottom of the header */
+    padding-bottom: 1rem;
+}
+#sitename{ /* make the site name not have a background or border */
+    background-color: transparent;
+    border-style: none;
+}
+#username, #password, #email{ /* adjust the width of the email, username and password text fields */
+    width: 65%;
+    padding: 0.75rem;
+    border-style:solid;
+            
+}
+#Dont{
+    padding-top: 2.5%;
+}
+#error{
+    color:red;
+    font-weight: bold;
+}

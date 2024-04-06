@@ -1,0 +1,173 @@
+/* ALL CSS written by Sebastian Deslauriers */
+/*this imports the font Exo 2 so that I can use it on this website*/
+@import url('https://fonts.googleapis.com/css2?family=Exo+2&display=swap'); 
+
+header {
+    text-align: center;
+    padding: 1rem 0;
+    padding-bottom: 1px;  
+    background-color: #664245;
+    
+    .nav_list{ /* this modifies the navigation list inside the header element*/
+        display: inline;
+        text-decoration: none;
+        margin: 5%;
+        font-weight: bold;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;        
+        border-radius: 15px;
+    }
+
+    #sitename a{ /* I wanted the site name in between the links to the other pages so this is basically the styling for the nav but without the background color */
+        display: inline;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 135%;
+        transition: all 250ms;
+    }
+    #sitename a:hover {
+        font-size: 150%;
+    }
+
+    /*#searchbar{
+        display: flex;
+        text-align: left;
+    }*/
+    
+    .sidebutton{ /* moves the "my movie list" and sign in buttons to the right */
+        display: flex;
+        justify-content:right;
+        text-decoration: none;
+        font-weight: bold;
+        padding-right: 5%;      
+        padding-bottom: 5px;
+    }
+    #ulist, #signbutt{ /* adds the padding and rounding for the "my movie list" and sign in buttons */
+        margin-left: 15px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;        
+        border-radius: 15px;
+        border-width: 2px;
+    }
+    /*#searchbutt{ adds the padding to the search button
+        padding-left: 5px;
+        padding-right: 5px;
+    }*/
+    #ulist{  /* adds the background colour and border to the "my movie list" */
+        background-color: #AAAAAA;
+        border-color: #000000;
+        border-style:solid;
+        border-width: 2px;
+        transition: all 100ms;
+    }
+    #ulist:hover{  /* adds the background colour and border to the "my movie list" */
+        background-color: #C1B8B8;
+        
+    }
+    #signbutt, /*#searchbutt,*/ .nav_list{ /* adds the background colour and border to the navigation, sign in button and search button */
+        background-color: #BF3944;
+        border-color: #000000;
+        border-style:solid;
+        border-width: 2px;
+        transition: all 100ms;
+    }
+
+    #signbutt:hover, /*#searchbutt:hover,*/ .nav_list:hover{ /* adds the background colour and border to the navigation, sign in button and search button */
+        background-color: #E53947;
+    }
+    
+}
+
+body {/*set background colour, font colour, and font family along with the line height */
+    all: revert; 
+    background-color: #5F5959;
+    color: #000000;
+    font-family: 'Exo 2', sans-serif;
+    line-height: 1.6;
+    text-align: center;
+    #searchbar{
+        display: inline;
+    }
+    #search{
+        line-height: 1.6;
+        display: inline;
+        padding-top: 5px;
+        width: 55%;
+    }
+    #searchbutt{ /* adds the background colour and border to the search button */
+        background-color: #BF3944;
+        border-color: #000000;
+        border-style:solid;
+        border-width: 2px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        transition: all 100ms;
+        display: inline;
+    }
+    
+    #searchbutt:hover{ /* adds the background colour and border to the navigation, sign in button and search button */
+        background-color: #E53947;
+    }
+    
+    
+}
+
+
+button{/* this modifies any buttons to have a near black backround and white text 
+        * along with having padding on each side so i can put multiple buttons beside eachother
+        */
+    background-color: #333333;
+    color: #ffffff;
+    border: none;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    cursor: pointer;
+    margin: 10px;
+}
+a{ /*makes the hyperlinks inline and not have any colour to them*/
+    display: inline;
+    text-decoration: none;
+    margin: auto; 
+}
+a, a:visited, a:hover, a:active {
+    /* gets rid of the ugly blue and purple colours of the hyperlinks on the page by telling it to 
+     * inherit the colour of the text in the body element
+     */
+    color: inherit;
+  }
+
+#NoAcc{/* I wanted the hyperlink to the sign up / sign in to be underlines so people knew they  
+        * could click on it so I had to add this rule for the element with the id "NoAcc"
+        */
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+
+
+
+footer{/*this is unnecessary but it was a requirement*/
+    margin-top: 8%;
+    color:#ffffff;
+    font-style: italic;
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
+    font-size: 50%;
+    background-color: #CcCACA;
+    
+}
+
+
+h1, h2, h3, p, li, ul, body{/* sets all these elements to be zero incase a browser sets them 
+                             * to something else, most of these get 
+                             * overriden anyway but some of them dont so keep this here
+                             */
+    padding: 0;
+    margin: 0;
+}

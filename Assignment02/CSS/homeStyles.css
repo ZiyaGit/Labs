@@ -1,0 +1,285 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    list-style: none;
+    
+}
+body{
+    
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    
+    background: url('../images/loginBacground.jpg') no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+
+
+/*///////////////////// header section///////////////////// */
+
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+a :hover{
+    color: white;
+}
+header{
+    position: relative;
+    padding: 2rem;
+}
+.navbar{
+    width: 100%;
+    height: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar .logo a{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.navbar .links{
+    display: flex;
+    gap: 2rem;
+
+}
+.navbar .toggle_btn{
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+}
+.action_btn{
+    background-color: #7D3C98;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: scale 0.2 ease;
+}
+.action_btn:hover{
+    scale: 1.05;
+    color: white;
+}
+.action_btn :active{
+    scale: 0.95;
+}
+
+
+
+.dropdawn_menu{
+    display: none;
+    position: absolute;
+    right: 2rem;
+    top: 100px;
+    width: 300px;
+    height: 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: height 0.2 cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dropdawn_menu.open{
+    height: 185px;
+}
+.dropdawn_menu li{
+    padding: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dropdawn_menu .action_btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+@media(max-width:992px){
+    .navbar .links,
+    .navbar .action_btn{
+        display: none;
+    }
+    .navbar .toggle_btn{
+        display: block;
+    }
+
+    .dropdawn_menu{
+        display: block;
+    }
+    
+}
+
+@media  (max-width: 576px){
+    .dropdawn_menu{
+        left: 2rem;
+        width: unset;
+    }
+}
+
+
+
+
+
+
+
+/*///////////////////// end of header section///////////////////// */
+.row{
+    display: flex;
+    height: 88%;
+    align-items: center;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.col{
+    flex-basis: 50%;
+}
+h1{
+    color: white;
+    font-size: 100px;
+}
+p{
+    color: white;
+    font-size: 15px;
+    line-height: 22px;
+}
+#button{
+    background-color: #7D3C98;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: scale 0.2 ease;
+    
+}
+#button :hover{
+    scale: 1.05;
+    color: white;  
+}
+#button :active{
+    scale: 0.95;
+}
+.card {
+    width: 100%;
+    height: 120px;
+    display: inline-block;
+    border-radius: 10px;
+    padding: 15px 25px;
+    box-sizing: border-box;
+    cursor: pointer;
+    margin: 10px 15px;
+    background-position: center;
+    background-size: cover;
+    transition: transform 0.5s;
+    text-decoration: none;
+}
+.card1{
+    background-image: url(../images/Frieren.jpg);
+    margin-left: 50px;
+}
+.card2{
+    background-image: url(../images/Bleach.jpg);
+    margin-left: 50px;
+}
+.card3{
+    background-image: url(../images/Attack.jpg);
+    margin-left: 50px;
+}
+.card4{
+    background-image: url(../images/Naruto.jpg);
+    margin-left: 50px;
+}
+.card:hover {
+    transform: scale(1.05);
+}
+
+.h2 {
+    color: white;
+    text-decoration: none; 
+    display: block;
+}
+
+#description {
+    margin-bottom: 20px; 
+}
+.top{
+    margin-left: 50px;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 770px) {
+    .top {
+        margin-left: 20px; /* Adjust left margin for smaller screens */
+        font-size: 24px; /* Make the font size smaller */
+        margin-bottom: 20px; /* Increase bottom margin to avoid touching the Explore button */
+        margin-top: 40px;
+        font-size: 42px;
+    }
+
+    .card {
+        margin-left: 10px; /* Adjust according to your layout needs */
+        margin-right: 10px; /* Adjust according to your layout needs */
+    }
+}
+
+
+
+
+
+
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .col {
+        flex-basis: 100%;
+    }
+    .card {
+        width: 100%; /* Adjust card width for smaller screens */
+        margin-left: 0; /* Reset margin-left for cards */
+    }
+}
+
+#showMoreBtn {
+    background-color: purple; /* Green background */
+    color: white; /* White text */
+    padding: 3px 8px; /* Top and bottom padding, left and right padding */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Cursor changes to pointer to indicate it's clickable */
+    outline: none; /* Remove outline */
+    font-size: 0.8rem; /* Text size */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition for background color and transform */
+}
+
+#showMoreBtn:hover, #showMoreBtn:focus {
+    background-color: #45a049; /* Darker green background on hover/focus */
+    transform: scale(1.05); /* Slightly scale the button for a subtle effect */
+}
+
+#showMoreBtn:active {
+    transform: scale(0.95); /* Slightly scale down the button when clicked */
+}

@@ -1,0 +1,31 @@
+Title: , Description: , Genre: Choose genre, Subject: Choose subject
+Title: , Description: , Genre: Choose genre, Subject: Choose subject
+Title: , Description: , Genre: Choose genre, Subject: Choose subject
+Title: 
+Description: 
+Genre: Choose genre
+Subject: Choose subject
+Star: 
+Year: 
+Production: 
+
+
+
+Title: ziya
+Description: lab5
+Genre: Comedy
+Subject: 
+        Children and Youth
+Star: 5
+Year: 2311
+Production: bbb
+
+Title: ziya
+Description: lab5
+Genre: Comedy
+Subject: 
+        Children and Youth
+Star: 5
+Year: 2311
+Production: bbb
+

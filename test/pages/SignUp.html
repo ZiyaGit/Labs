@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Sign Up</title>
+        <meta name="author" content="Sebastian Deslauriers">
+        <!--css used-->
+        <link rel="stylesheet" href=../styles/style.css>
+        <link rel="stylesheet" href=../styles/styleSign.css>
+        <!-- JavaScript used-->    
+        <script src="../scripts/SignUp.js"></script>
+        
+        
+    </head>
+      
+    <body>
+        <header>
+            <nav>
+                <!--link to the main page--> 
+                
+                <p class="nav_list" id="sitename"><a href="../server/Index.php">My Movie List</a></p>
+                
+                
+            </nav>
+    
+        </header>
+    <div id="signwrap"> <!-- wrapper for the sign up fourm -->
+    <h2>Sign Up:</h2>
+    <form action='../server/SignUp.php' method="POST" id="SignUp" onsubmit="return validate();"> 
+        <!-- when user clicks submit, it will send this data through the Signup.js 
+            file and make sure the data is fine before sending it to the SignUp.php file-->
+
+        <input type="text" placeholder="Username:" id="username" name="Uname"  autocomplete="off"><br>
+        
+
+        <input type="password" placeholder="Password:" id="password" name="Pass"   autocomplete="new-password"> <br>
+        
+
+        <button type="submit">Sign Up</button>
+
+    </form>
+    <!-- if user has account they can login on the sign in page, which is where this link goes -->
+    <p id="Dont">Already have an account?<br><a id="NoAcc" href="../server/SignIn.php">Sign In</a></p>
+    </div>
+    
+    </body>
+    
+</html>

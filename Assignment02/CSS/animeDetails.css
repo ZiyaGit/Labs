@@ -1,0 +1,188 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background: url('../images/loginBacground.jpg') no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+/*///////////////////// header section///////////////////// */
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+a :hover{
+    color: white;
+}
+header{
+    position: relative;
+    padding: 2rem;
+}
+.navbar{
+    width: 100%;
+    height: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar .logo a{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.navbar .links{
+    display: flex;
+    gap: 2rem;
+
+}
+.navbar .toggle_btn{
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+}
+.action_btn{
+    background-color: #7D3C98;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: scale 0.2 ease;
+}
+.action_btn:hover{
+    scale: 1.05;
+    color: white;
+}
+.action_btn :active{
+    scale: 0.95;
+}
+
+
+
+.dropdawn_menu{
+    display: none;
+    position: absolute;
+    right: 2rem;
+    top: 100px;
+    width: 300px;
+    height: 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: height 0.2 cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dropdawn_menu.open{
+    height: 185px;
+}
+.dropdawn_menu li{
+    padding: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dropdawn_menu .action_btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+@media(max-width:992px){
+    .navbar .links,
+    .navbar .action_btn{
+        display: none;
+    }
+    .navbar .toggle_btn{
+        display: block;
+    }
+
+    .dropdawn_menu{
+        display: block;
+    }
+    
+}
+
+@media  (max-width: 576px){
+    .dropdawn_menu{
+        left: 2rem;
+        width: unset;
+    }
+}
+/*///////////////////// end of header section///////////////////// */
+.anime-container {
+    display: flex;
+    flex-direction: row; 
+    align-items: flex-start; 
+    gap: 20px; 
+    margin: 20px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7); 
+    border-radius: 10px; 
+    overflow: hidden;
+}
+
+.anime-container p {
+    color: white; 
+}
+
+.anime-image {
+    flex: 0 0 300px; 
+    text-align: center; 
+}
+
+.anime-image img {
+    width: 100%; 
+    height: auto; 
+    border-radius: 5px; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5); 
+}
+
+.anime-image p {
+    font-size: 1.5rem;
+    margin-top: 10px;
+    padding: 5px 0;
+    border-radius: 5px;
+}
+
+.anime-info {
+    flex: 1; 
+    padding: 10px; 
+}
+
+.anime-info h1, .anime-info .synopsis-title, .anime-info .synopsis-text, .anime-info .anime-details {
+    background: #333; 
+    margin-bottom: 10px;
+    padding: 10px; 
+    border-radius: 5px; 
+}
+
+.anime-info h1 {
+    font-size: 1.8rem;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .anime-container {
+        flex-direction: column;
+        align-items: center; 
+    }
+
+    .anime-image {
+        width: 100%; 
+        max-width: 400px; 
+    }
+
+    .anime-info {
+        width: 100%; 
+    }
+}

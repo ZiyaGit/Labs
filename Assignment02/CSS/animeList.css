@@ -1,0 +1,217 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    
+}
+
+body{
+    height: 100vh;
+    background: url('../images/loginBacground.jpg') no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    
+    
+}
+/*///////////////////// header section///////////////////// */
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+a :hover{
+    color: white;
+}
+header{
+    position: relative;
+    padding: 2rem;
+}
+.navbar{
+    width: 100%;
+    height: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar .logo a{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.navbar .links{
+    display: flex;
+    gap: 2rem;
+
+}
+.navbar .toggle_btn{
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+}
+.action_btn{
+    background-color: #7D3C98;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: scale 0.2 ease;
+}
+.action_btn:hover{
+    scale: 1.05;
+    color: white;
+}
+.action_btn :active{
+    scale: 0.95;
+}
+
+
+
+.dropdawn_menu{
+    display: none;
+    position: absolute;
+    right: 2rem;
+    top: 100px;
+    width: 300px;
+    height: 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: height 0.2 cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dropdawn_menu.open{
+    height: 185px;
+}
+.dropdawn_menu li{
+    padding: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dropdawn_menu .action_btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+@media(max-width:992px){
+    .navbar .links,
+    .navbar .action_btn{
+        display: none;
+    }
+    .navbar .toggle_btn{
+        display: block;
+    }
+
+    .dropdawn_menu{
+        display: block;
+    }
+    
+}
+
+@media  (max-width: 576px){
+    .dropdawn_menu{
+        left: 2rem;
+        width: unset;
+    }
+}
+/*///////////////////// end of header section///////////////////// */
+
+.anime-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+    gap: 20px; 
+}
+
+.anime-item {
+    width: calc(25% - 20px);
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px; 
+    overflow: hidden; 
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.anime-item img {
+    width: 100%; 
+    height: auto; 
+    transition: transform 0.3s ease; 
+    max-height: 330px;
+}
+
+.anime-item span {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7); 
+    color: white;
+    font-size: 1rem; 
+    padding: 10px; 
+    position: absolute; 
+    bottom: 0;
+    left: 0;
+    transition: background-color 0.3s ease;
+}
+
+.anime-item:hover span {
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+.anime-item:hover img {
+    transform: scale(1.1); 
+}
+
+@media (max-width: 960px) {
+    .anime-item {
+        width: calc(50% - 20px); 
+        max-height: 400px;
+    }
+}
+
+@media (max-width: 500px) {
+    .anime-item {
+        width: 100%; 
+        max-height: 450px;
+    }
+}
+
+/* search-conteiner */
+.search-container {
+    display: flex;
+    justify-content: center; 
+    padding: 20px; 
+}
+
+.home-search {
+    width: 100%; 
+    max-width: 500px;
+    padding: 10px 20px;
+    border-radius: 25px; 
+    border: 2px solid #ccc; 
+    font-size: 16px; 
+    outline: none; 
+}
+
+.home-search:focus {
+    border-color: #7D3C98; 
+}
+
+
+.search-container {
+    margin-top: 20px;
+}
