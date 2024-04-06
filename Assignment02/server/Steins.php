@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Steins;Gate - AniZI</title>
-    <link rel="stylesheet" href="CSS/animeDetails.css">
-    <link rel="icon" type="image/x-icon" href="images/ZiyaIcon.png">
+    <link rel="stylesheet" href="../CSS/animeDetails.css">
+    <link rel="icon" type="image/x-icon" href="../images/ZiyaIcon.png">
 </head>
 <body>
 <header>
@@ -14,7 +14,7 @@
             <div><a href="index.php" style="font-size: 36px">AniZI</a></div>
             <div class="logo">
                 <a href="index.php">
-                    <img src="images/ZiyaIcon.png" alt="Home Icon" id="icon" draggable="false" style="height: 120px; width: 120px;">
+                    <img src="../images/ZiyaIcon.png" alt="Home Icon" id="icon" draggable="false" style="height: 120px; width: 120px;">
                 </a>
             
             </div>
@@ -72,7 +72,7 @@
     </script>
     <div class="anime-container">
         <div class="anime-image">
-            <img src="images/Steins.jpg" alt="Steins;Gate">
+            <img src="../images/Steins.jpg" alt="Steins;Gate">
             <p>Score: 9.07/10</p>
         </div>
         <div class="anime-info">
