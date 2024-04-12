@@ -47,80 +47,76 @@ session_start();
     
     <div class="wrapper">
     <?php
+        $fullNameError = $emailError = $passwordError = $passwordRepeatError = '';
         if (isset($_POST["submit"])) {
-           $fullName = $_POST["fullname"];
-           $email = $_POST["email"];
-           $password = $_POST["password"];
-           $passwordRepeat = $_POST["repeat_password"];
-           
-           $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+            require_once("database.php");
 
-           $errors = array();
-           require_once ("database.php");
-           if (empty($fullName) OR empty($email) OR empty($password) OR empty($passwordRepeat)) {
-            array_push($errors,"All fields are required ");
-           }
-           if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            array_push($errors, "Email is not valid");
-           }
-           if (strlen($password)<8) {
-            array_push($errors,"Password must be at least 8 charactes long");
-           }
-           if ($password!==$passwordRepeat) {
-            array_push($errors,"Password does not match");
-           }
-           
-           $sql = "SELECT * FROM users WHERE email = '$email'";
-           $result = mysqli_query($conn, $sql);
-           $rowCount = mysqli_num_rows($result);
-           if ($rowCount>0) {
-            array_push($errors,"Email already exists!");
-           }
-           if (count($errors)>0) {
-            foreach ($errors as  $error) {
-                echo "<div class='alert alert-danger'>$error</div>";
-            }
-           }else{
+            $fullName = $_POST["fullname"];
+            $email = $_POST["email"];
+            $password = $_POST["password"];
+            $passwordRepeat = $_POST["repeat_password"];
+
+            $errors = array();
             
-            $sql = "INSERT INTO users (full_name, email, password) VALUES ( ?, ?, ? )";
-            $stmt = mysqli_stmt_init($conn);
-            $prepareStmt = mysqli_stmt_prepare($stmt,$sql);
-            if ($prepareStmt) {
-                mysqli_stmt_bind_param($stmt,"sss",$fullName, $email, $passwordHash);
-                mysqli_stmt_execute($stmt);
-                echo "<div class='alert alert-success' style='text-align:center; color: white; background-color: green; border-radius:12px; font-size:36px;'>
-                You are registered successfully.</div>";
-                echo '<script>
-                setTimeout(function() {
-                    window.location.href = "login.php";
-                }, 2000);
-                </script>';
-            exit;
-            }else{
-                die("Something went wrong");
+            if (empty($fullName)) {
+                $fullNameError = "Full name is required";
             }
-           }
-          
 
+            if (empty($email)) {
+                $emailError = "Email is required";
+            } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $emailError = "Email is not valid";
+            }
+
+            if (empty($password)) {
+                $passwordError = "Password is required";
+            } elseif (strlen($password) < 8) {
+                $passwordError = "Password must be at least 8 characters long";
+            }
+
+            if ($password !== $passwordRepeat) {
+                $passwordRepeatError = "Passwords do not match";
+            }
+
+            if (empty($emailError) && empty($fullNameError) && empty($passwordError) && empty($passwordRepeatError)) {
+                $sql = "SELECT * FROM users WHERE email = ?";
+                $stmt = mysqli_prepare($conn, $sql);
+                mysqli_stmt_bind_param($stmt, "s", $email);
+                mysqli_stmt_execute($stmt);
+                mysqli_stmt_store_result($stmt);
+                
+                if (mysqli_stmt_num_rows($stmt) > 0) {
+                    $emailError = "Email already exists!";
+                } else {
+                    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+                    $sql = "INSERT INTO users (full_name, email, password) VALUES (?, ?, ?)";
+                    $stmt = mysqli_prepare($conn, $sql);
+                    mysqli_stmt_bind_param($stmt, "sss", $fullName, $email, $passwordHash);
+                    mysqli_stmt_execute($stmt);
+                    echo "<script>alert('You are registered successfully.'); window.location.href = 'login.php';</script>";
+                }
+                mysqli_stmt_close($stmt);
+            }
+            mysqli_close($conn);
         }
-        ?>
-        <form action="register.php" method="post">
+    ?>
+    <form action="register.php" method="post">
         <h1>Register</h1>
         <div class="input-box">
-            <input type="text" class="Form-control" name="fullname" placeholder="User Name" >
-            <i class='bx bxs-user' ></i>
+            <input type="text" class="Form-control" name="fullname" placeholder="User Name" value="<?php echo isset($fullName) ? $fullName : ''; ?>" >
+            <div class="error"><?php echo $fullNameError ? "X " . $fullNameError : ""; ?></div>
         </div>
         <div class="input-box">
-            <input type="email" class="Form-control" name="email" placeholder="Email" >
-            <i class='bx bxs-envelope' ></i>
+            <input type="email" class="Form-control" name="email" placeholder="Email" value="<?php echo isset($email) ? $email : ''; ?>" >
+            <div class="error"><?php echo $emailError ? "X " . $emailError : ""; ?></div>
         </div>
         <div class="input-box">
-            <input type="password" class="Form-control" name="password" placeholder="Password" >
-            <i class='bx bxs-lock-alt'></i>
+            <input type="password" class="Form-control" name="password" placeholder="Password">
+            <div class="error"><?php echo $passwordError ? "X " . $passwordError : ""; ?></div>
         </div>
         <div class="input-box">
-            <input type="password" class="Form-control" name="repeat_password" placeholder="Repeat Password" >
-            <i class='bx bxs-lock-alt'></i>
+            <input type="password" class="Form-control" name="repeat_password" placeholder="Repeat Password">
+            <div class="error"><?php echo $passwordRepeatError ? "X " . $passwordRepeatError : ""; ?></div>
         </div>
     
         <button type="submit" class="btn" value="Register" name="submit">Register</button>
@@ -128,8 +124,18 @@ session_start();
         <div class="register-link">
             <p>Go Back To</p> <a href="login.php">Login</a>
         </div>
-        </form>
-    </div>
+    </form>
+    <style>
+        .error {
+            color: red;       
+            text-align: center;  
+            font-size: 1em;   
+            margin-top: 5px;     
+        }
+    </style>
+
+</div>
+
     </div>
 
     <script>
@@ -148,8 +154,6 @@ session_start();
         }
         
     </script>
-    <?php
-        include 'footer.php';
-    ?>
+    
 </body>
 </html>

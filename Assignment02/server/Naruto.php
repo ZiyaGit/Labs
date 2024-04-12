@@ -1,3 +1,33 @@
+<?php
+
+session_start();
+$anime_id = 8;
+
+$_SESSION['anime_id'] =  $anime_id;
+
+
+if (!isset($_SESSION['comments'])) {
+    $_SESSION['comments'] = [];
+}
+
+// Handling comment submission
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_comment'], $_POST['anime_id'], $_POST['comment'])) {
+    $comment = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_SPECIAL_CHARS);
+    $animeId = filter_input(INPUT_POST, 'anime_id', FILTER_SANITIZE_NUMBER_INT);
+    
+    // Append the comment to the session storage
+    if (!isset($_SESSION['comments'][$animeId])) {
+        $_SESSION['comments'][$animeId] = [];
+    }
+
+    $_SESSION['comments'][$animeId][] = [
+        'comment' => $comment
+    ];
+    
+    
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,7 +102,7 @@
     </script>
     <div class="anime-container">
         <div class="anime-image">
-            <img src="images/Naruto.jpg" alt="Naruto">
+            <img src="../images/Naruto.jpg" alt="Naruto">
             <p>Score: 8.27/10</p>
         </div>
         <div class="anime-info">
@@ -90,5 +120,7 @@
             <p class="anime-details">Ranked #286 | Popularity #16 | Members 2,468,514</p>
         </div>
     </div>
+    <?php include 'comment.php';?>
+    
 </body>
 </html>

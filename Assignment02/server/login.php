@@ -95,43 +95,59 @@ if (isset($_POST["login"])) {
     
     <div class="wrapper">
     <?php
-    
+        $emailError = $passwordError = '';
         if (isset($_POST["login"])) {
-           $email = $_POST["email"];
-           $password = $_POST["password"];
-            
-            $sql = "SELECT * FROM users WHERE email = '$email'";
-            $result = mysqli_query($conn, $sql);
-            $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
-            if ($user) {
-                if (password_verify($password, $user["password"])) {
-                    
-                    $_SESSION["user"] = "yes";
-                    echo "<div class='alert alert-success' style='text-align:center; color: white; 
-                    background-color: green; border-radius:12px; font-size:36px;'>Login successful. </div>";
-                    echo "<script>setTimeout(function() { window.location.href = 'index.php'; }, 2000);</script>";
-                    exit;
-                }else{
-                    echo "<div class='alert alert-danger'>Password does not match</div>";
-                }
-            }else{
-                echo "<div class='alert alert-danger'>Email does not match</div>";
+            require_once("database.php");
+
+            $email = $_POST["email"];
+            $password = $_POST["password"];
+
+            if (empty($email)) {
+                $emailError = "Email is required";
             }
+            
+            if (empty($password)) {
+                $passwordError = "Password is required";
+            }
+
+            if (empty($emailError) && empty($passwordError)) {
+                $sql = "SELECT * FROM users WHERE email = ?";
+                $stmt = mysqli_prepare($conn, $sql);
+                mysqli_stmt_bind_param($stmt, "s", $email);
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_get_result($stmt);
+
+                if ($user = mysqli_fetch_assoc($result)) {
+                    if (password_verify($password, $user["password"])) {
+                        $_SESSION["user"] = "yes"; // Assuming session_start() has been called at the top of your script
+                        echo "<div class='alert alert-success' style='text-align:center; color: white; 
+                        background-color: green; border-radius:12px; font-size:36px;'>Login successful.</div>";
+                        echo "<script>setTimeout(function() { window.location.href = 'index.php'; }, 2000);</script>";
+                        exit;
+                    } else {
+                        $passwordError = "X Incorrect password";
+                    }
+                } else {
+                    $emailError = "X Email not found";
+                }
+                mysqli_stmt_close($stmt);
+            }
+            mysqli_close($conn);
         }
-        ?>
-        <form action="login.php" method="post">
+    ?>
+    <form action="login.php" method="post">
         <h1>Login</h1>
         <div class="input-box">
-            <input type="email" placeholder="Email" name="email">
-            <i class='bx bxs-user' ></i>
+            <input type="email" class="Form-control" placeholder="Email" name="email" value="<?php echo isset($email) ? $email : ''; ?>">
+            <div class="error"><?php echo $emailError; ?></div>
         </div>
         <div class="input-box">
-            <input type="password" placeholder="Password" name="password">
-            <i class='bx bxs-lock-alt'></i>
+            <input type="password" class="Form-control" placeholder="Password" name="password">
+            <div class="error"><?php echo $passwordError; ?></div>
         </div>
         <div class="remember-forgot">
             <label><input type="checkbox"> Remember me</label>
-            <a href="#">Forgot Password?</a>
+            <a href="forgot-password.php">Forgot Password?</a>
         </div>
     
         <button type="submit" class="btn" value="Login" name="login">Login</button>
@@ -139,8 +155,16 @@ if (isset($_POST["login"])) {
         <div class="register-link">
             <p>Don't Have an Account?</p> <a href="register.php">Register</a>
         </div>
-        </form>
-    </div>
+    </form>
+    <style>
+        .error {
+            color: red;       
+            text-align: center;  
+            font-size: 1em;   
+            margin-top: 5px;     
+        }
+    </style>
+</div>
 
     </div>
 
@@ -159,9 +183,6 @@ if (isset($_POST["login"])) {
         }
         }
         
-    </script>
-    <?php
-        include 'footer.php';
-    ?>
+    </script>   
 </body>
 </html>

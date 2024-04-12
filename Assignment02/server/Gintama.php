@@ -93,5 +93,7 @@
             <p class="anime-details">Ranked #4 | Popularity #341 | Members 627,026</p>
         </div>
     </div>
+    <?php include 'comment.php';?>
+    
 </body>
 </html>

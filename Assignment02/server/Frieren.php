@@ -1,8 +1,11 @@
 <?php
 // Frieren.php
 session_start();
-$anime_id = 1;  // Hardcoding anime_id for Frieren
-// Initialize comments session storage if not already set
+$anime_id = 1;
+
+$_SESSION['anime_id'] =  $anime_id;
+
+
 if (!isset($_SESSION['comments'])) {
     $_SESSION['comments'] = [];
 }
@@ -112,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_comment'], $_PO
         const toggleBtnIcon = document.querySelector('.toggle_btn i')
         const dropdawnMenu = document.querySelector('.dropdawn_menu')
         const centerDiv = document.querySelector('.center');
-        toggleBTN.onclick = function(){
+        toggleBTN.onclick = function() {
             dropdawnMenu.classList.toggle('open')
             if (dropdawnMenu.classList.contains('open')) {
             const dropdawnMenuHeight = dropdawnMenu.offsetHeight;
@@ -124,7 +127,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_comment'], $_PO
         
     </script>
     <?php include 'comment.php';?>
-    <?php include 'footer.php';?>
+    
 </body>
 </html>
 

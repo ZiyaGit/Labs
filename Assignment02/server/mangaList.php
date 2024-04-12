@@ -68,7 +68,7 @@
     <p class="container" >Coming Soon</p>
     </div>
     
-    <?php include 'footer.php' ?>
+    
     
 </body>
 </html>

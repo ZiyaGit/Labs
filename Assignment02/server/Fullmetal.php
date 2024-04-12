@@ -121,7 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_comment'], $_PO
         </div>
     </div>
     <?php include 'comment.php';?>
-    <?php include 'footer.php';?>
+    
 </body>
 
 </html>
